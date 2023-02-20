@@ -58,19 +58,16 @@ async function run() {
     });
 
     //Add Order API
-    app.get('/orders', async (req, res) => {
+    app.get("/orders", async (req, res) => {
       let query = {};
       const email = req.query.email;
-      if(email){
-        const query = {email: email}
-        const cursor = orderCollection.find(query);
-        const orders = await cursor.toArray();
-        res.send(orders);
+      if (email) {
+        query = { email: email };
       }
-      const cursor = orderCollection.find({});
+      const cursor = orderCollection.find(query);
       const orders = await cursor.toArray();
       res.send(orders);
-    })
+    });
     app.post("/orders", async (req, res) => {
       const order = req.body;
       order.createdAt = new Date();
@@ -92,6 +89,6 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   console.log("Server is running on port", port);
-  console.log('Device:', os.hostname())
-  console.log('OS  type: ', os.type(), 'OS:', os.version());
+  console.log("Device:", os.hostname());
+  console.log("OS  type: ", os.type(), "OS:", os.version());
 });
