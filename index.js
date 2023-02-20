@@ -57,9 +57,10 @@ async function run() {
     });
 
 
-    //Add Order Collection
+    //Add Order API
     app.post("/orders", async (req, res) => {
       const order = req.body;
+      orders.createdAt = new Date();
       const result = await orderCollection.insertOne(order);
       res.json(result);
     });
