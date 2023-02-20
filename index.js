@@ -4,6 +4,7 @@ require("dotenv").config();
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
+const os = require("os");
 
 //middleware
 app.use(cors());
@@ -58,7 +59,14 @@ async function run() {
 
     //Add Order API
     app.get('/orders', async (req, res) => {
+      let query = {};
       const email = req.query.email;
+      if(email){
+        const query = {email: email}
+        const cursor = orderCollection.find(query);
+        const orders = await cursor.toArray();
+        res.send(orders);
+      }
       const cursor = orderCollection.find({});
       const orders = await cursor.toArray();
       res.send(orders);
@@ -83,5 +91,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Server is running on port", port);
+  console.log("Server is running on port", port, 'user is: ', os.userInfo().username, 'host is: ', os.hostname(), 'os is:', os.version());
+ 
 });
