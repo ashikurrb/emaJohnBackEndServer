@@ -91,6 +91,8 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Server is running on port", port, 'user is: ', os.userInfo().username, 'host is: ', os.hostname(), 'os is:', os.version());
+  console.log("Server is running on port", port);
+  console.log('Device:', os.hostname(), 'OS:', os.version())
+  console.log('OS  type: ', os.type());
  
 });
