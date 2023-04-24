@@ -10,7 +10,7 @@ const os = require("os");
 
 //firebase admit init
 
-var serviceAccount = require("./ema-john-simple-5bdb3-firebase-adminsdk-g889i-fb2ca7df33.json");
+var serviceAccount = require("./ema-john-simple-5bdb3-firebase-adminsdk-g889i-b1bdcd11fd.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
